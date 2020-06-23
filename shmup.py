@@ -28,7 +28,8 @@ pygame.display.set_caption("My Game")
 clock = pygame.time.Clock()
 
 all_sprites = pygame.sprite.Group()
-
+player = Player()
+all_sprites.add(player)
 # Game Loop
 running = True
 while running:
