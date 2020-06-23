@@ -20,6 +20,11 @@ class Player(pygame.sprite.Sprite):
         self.image.fill(GREEN)
         self.rect = self.image.get_rect()
         self.rect.center = (WIDTH / 2, HEIGHT / 2)
+#tell sprite to move 5 pxels to the right on update every loop
+    def update(self):
+        self.rect.x += 5
+        if self.rect.left > WIDTH:
+            self.rect.right = 0
 # initialise pygame and create window
 pygame.init()
 pygame.mixer.init()  # for sound
