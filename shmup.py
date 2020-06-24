@@ -1,6 +1,7 @@
 # Pygame template - skeleton for new pygame projects - from www.kidscancode.com.
 import pygame
 import random
+import os #commands to nagigate and manipulate file in OS
 
 WIDTH = 800 # width of new game window
 HEIGHT = 600 # height ------------
@@ -12,12 +13,19 @@ WHITE = (255, 255, 255)
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
 BLUE = (0, 0, 255)
+
+#  set up assets folders
+
+
+game_folder = os.path.dirname(__file__)
+img_folder = os.path.join(game_folder, "img")
+
 #define sprite class
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.Surface((50, 50))
-        self.image.fill(GREEN)
+        self.image = pygame.image.load(os.path.join(img_folder,"p1_jump.png")).convert()
+        self.image.set_colorkey(BLACK)# set background of rect to transparent
         self.rect = self.image.get_rect()
         self.rect.center = (WIDTH / 2, HEIGHT / 2)
 #tell sprite to move 5 pxels to the right on update every loop
@@ -49,7 +57,7 @@ while running:
     all_sprites.update()
 
     # Draw / render
-    screen.fill(BLACK)
+    screen.fill(BLUE)
     all_sprites.draw(screen)
     # *after* drawing everything, flip the display
     pygame.display.flip()
