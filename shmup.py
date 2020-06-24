@@ -28,9 +28,15 @@ class Player(pygame.sprite.Sprite):
         self.image.set_colorkey(BLACK)# set background of rect to transparent
         self.rect = self.image.get_rect()
         self.rect.center = (WIDTH / 2, HEIGHT / 2)
+        self.y_speed = 5 # so sprite can move 5pixeld on y axis
 #tell sprite to move 5 pxels to the right on update every loop
     def update(self):
         self.rect.x += 5
+        self.rect.y += self.y_speed # move sprite downwards at y_speed
+        if self.rect.bottom > HEIGHT - 200:# if sprite gets to  200 pixels from bottom of screen
+            self.y_speed = -5 # move sprite upwards
+        if self.rect.top < 200: # if sprite gets to 200 pixels from top
+            self.y_speed = 5 # move sprite downwards
         if self.rect.left > WIDTH:
             self.rect.right = 0
 # initialise pygame and create window
